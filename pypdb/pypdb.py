@@ -504,7 +504,7 @@ def get_pdb_file(pdb_id: str, filetype='pdb', compression=False):
     return pdb_client.get_pdb_file(pdb_id, filetype_enum, compression)
 
 
-https://data.rcsb.org/migration-guide.html#chem-comp-description
+#https://data.rcsb.org/migration-guide.html#chem-comp-description
 def describe_chemical(chem_id):
     """
 
