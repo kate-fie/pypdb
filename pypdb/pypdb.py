@@ -504,153 +504,153 @@ def get_pdb_file(pdb_id: str, filetype='pdb', compression=False):
     return pdb_client.get_pdb_file(pdb_id, filetype_enum, compression)
 
 
-# https://data.rcsb.org/migration-guide.html#chem-comp-description
-# def describe_chemical(chem_id):
-#     """
+https://data.rcsb.org/migration-guide.html#chem-comp-description
+def describe_chemical(chem_id):
+    """
 
-#     Parameters
-#     ----------
+    Parameters
+    ----------
 
-#     chem_id : string
-#         A 4 character string representing the full chemical sequence of interest (ie, NAG)
+    chem_id : string
+        A 4 character string representing the full chemical sequence of interest (ie, NAG)
 
-#     Returns
-#     -------
+    Returns
+    -------
 
-#     out : dict
-#         A dictionary containing the chemical description associated with the PDB ID
+    out : dict
+        A dictionary containing the chemical description associated with the PDB ID
 
-#     Examples
-#     --------
-#     >>> chem_desc = describe_chemical('NAG')
-#     >>> print(chem_desc)
-#     {'describeHet': {'ligandInfo': {'ligand': {'@molecularWeight': '221.208',
-#     'InChIKey': 'OVRNDRQMDRJTHS-FMDGEEDCSA-N', '@type': 'D-saccharide',
-#     'chemicalName': 'N-ACETYL-D-GLUCOSAMINE', '@chemicalID': 'NAG',
-#     'smiles': 'CC(=O)N[C@@H]1[C@H]([C@@H]([C@H](O[C@H]1O)CO)O)O', '
-#     InChI': 'InChI=1S/C8H15NO6/c1-3(11)9-5-7(13)6(12)4(2-10)15-8(5)14/
-#     h4-8,10,12-14H,2H2,1H3,(H,9,11)/t4-,5-,6-,7-,8-/m1/s1',
-#     'formula': 'C8 H15 N O6'}}}}
+    Examples
+    --------
+    >>> chem_desc = describe_chemical('NAG')
+    >>> print(chem_desc)
+    {'describeHet': {'ligandInfo': {'ligand': {'@molecularWeight': '221.208',
+    'InChIKey': 'OVRNDRQMDRJTHS-FMDGEEDCSA-N', '@type': 'D-saccharide',
+    'chemicalName': 'N-ACETYL-D-GLUCOSAMINE', '@chemicalID': 'NAG',
+    'smiles': 'CC(=O)N[C@@H]1[C@H]([C@@H]([C@H](O[C@H]1O)CO)O)O', '
+    InChI': 'InChI=1S/C8H15NO6/c1-3(11)9-5-7(13)6(12)4(2-10)15-8(5)14/
+    h4-8,10,12-14H,2H2,1H3,(H,9,11)/t4-,5-,6-,7-,8-/m1/s1',
+    'formula': 'C8 H15 N O6'}}}}
 
-#     """
-#     out = get_info(chem_id, url_root = 'http://www.rcsb.org/pdb/rest/describeHet?chemicalID=')
-#     out = to_dict(out)
-#     return out
+    """
+    out = get_info(chem_id, url_root = 'http://www.rcsb.org/pdb/rest/describeHet?chemicalID=')
+    out = to_dict(out)
+    return out
 
-# def get_ligands(pdb_id):
-#     """Return ligands of given PDB ID
+def get_ligands(pdb_id):
+    """Return ligands of given PDB ID
 
-#     Parameters
-#     ----------
+    Parameters
+    ----------
 
-#     pdb_id : string
-#         A 4 character string giving a pdb entry of interest
+    pdb_id : string
+        A 4 character string giving a pdb entry of interest
 
-#     Returns
-#     -------
+    Returns
+    -------
 
-#     out : dict
-#         A dictionary containing a list of ligands associated with the entry
+    out : dict
+        A dictionary containing a list of ligands associated with the entry
 
-#     Examples
-#     --------
-#     >>> ligand_dict = get_ligands('100D')
-#     >>> print(ligand_dict)
-#     {'id': '100D',
-#     'ligandInfo': {'ligand': {'@chemicalID': 'SPM',
-#                            '@molecularWeight': '202.34',
-#                            '@structureId': '100D',
-#                            '@type': 'non-polymer',
-#                            'InChI': 'InChI=1S/C10H26N4/c11-5-3-9-13-7-1-2-8-14-10-4-6-12/h13-14H,1-12H2',
-#                            'InChIKey': 'PFNFFQXMRSDOHW-UHFFFAOYSA-N',
-#                            'chemicalName': 'SPERMINE',
-#                            'formula': 'C10 H26 N4',
-#                            'smiles': 'C(CCNCCCN)CNCCCN'}}}
+    Examples
+    --------
+    >>> ligand_dict = get_ligands('100D')
+    >>> print(ligand_dict)
+    {'id': '100D',
+    'ligandInfo': {'ligand': {'@chemicalID': 'SPM',
+                           '@molecularWeight': '202.34',
+                           '@structureId': '100D',
+                           '@type': 'non-polymer',
+                           'InChI': 'InChI=1S/C10H26N4/c11-5-3-9-13-7-1-2-8-14-10-4-6-12/h13-14H,1-12H2',
+                           'InChIKey': 'PFNFFQXMRSDOHW-UHFFFAOYSA-N',
+                           'chemicalName': 'SPERMINE',
+                           'formula': 'C10 H26 N4',
+                           'smiles': 'C(CCNCCCN)CNCCCN'}}}
 
-#     """
-#     out = get_info(pdb_id, url_root = 'http://www.rcsb.org/pdb/rest/ligandInfo?structureId=')
-#     out = to_dict(out)
-#     return remove_at_sign(out['structureId'])
+    """
+    out = get_info(pdb_id, url_root = 'http://www.rcsb.org/pdb/rest/ligandInfo?structureId=')
+    out = to_dict(out)
+    return remove_at_sign(out['structureId'])
 
-# def get_gene_onto(pdb_id):
-#     """Return ligands of given PDB_ID
+def get_gene_onto(pdb_id):
+    """Return ligands of given PDB_ID
 
-#     Parameters
-#     ----------
+    Parameters
+    ----------
 
-#     pdb_id : string
-#         A 4 character string giving a pdb entry of interest
+    pdb_id : string
+        A 4 character string giving a pdb entry of interest
 
-#     Returns
-#     -------
+    Returns
+    -------
 
-#     out : dict
-#         A dictionary containing the gene ontology information associated with the entry
+    out : dict
+        A dictionary containing the gene ontology information associated with the entry
 
-#     Examples
-#     --------
+    Examples
+    --------
 
-#     >>> gene_info = get_gene_onto('4Z0L')
-#     >>> print(gene_info['term'][0])
-#     {'@chainId': 'A',
-#      '@id': 'GO:0001516',
-#      '@structureId': '4Z0L',
-#      'detail': {'@definition': 'The chemical reactions and pathways resulting '
-#                                'in the formation of prostaglandins, any of a '
-#                                'group of biologically active metabolites which '
-#                                'contain a cyclopentane ring.',
-#                 '@name': 'prostaglandin biosynthetic process',
-#                 '@ontology': 'B',
-#                 '@synonyms': 'prostaglandin anabolism, prostaglandin '
-#                              'biosynthesis, prostaglandin formation, '
-#                              'prostaglandin synthesis'}}
-#     """
-#     out = get_info(pdb_id, url_root = 'http://www.rcsb.org/pdb/rest/goTerms?structureId=')
-#     out = to_dict(out)
-#     if not out['goTerms']:
-#         return None
-#     out = remove_at_sign(out['goTerms'])
-#     return out
+    >>> gene_info = get_gene_onto('4Z0L')
+    >>> print(gene_info['term'][0])
+    {'@chainId': 'A',
+     '@id': 'GO:0001516',
+     '@structureId': '4Z0L',
+     'detail': {'@definition': 'The chemical reactions and pathways resulting '
+                               'in the formation of prostaglandins, any of a '
+                               'group of biologically active metabolites which '
+                               'contain a cyclopentane ring.',
+                '@name': 'prostaglandin biosynthetic process',
+                '@ontology': 'B',
+                '@synonyms': 'prostaglandin anabolism, prostaglandin '
+                             'biosynthesis, prostaglandin formation, '
+                             'prostaglandin synthesis'}}
+    """
+    out = get_info(pdb_id, url_root = 'http://www.rcsb.org/pdb/rest/goTerms?structureId=')
+    out = to_dict(out)
+    if not out['goTerms']:
+        return None
+    out = remove_at_sign(out['goTerms'])
+    return out
 
-# def get_seq_cluster(pdb_id_chain):
-#     """Get the sequence cluster of a PDB ID plus a pdb_id plus a chain,
+def get_seq_cluster(pdb_id_chain):
+    """Get the sequence cluster of a PDB ID plus a pdb_id plus a chain,
 
-#     Parameters
-#     ----------
+    Parameters
+    ----------
 
-#     pdb_id_chain : string
-#         A string denoting a 4 character PDB ID plus a one character chain
-#         offset with a dot: XXXX.X, as in 2F5N.A
+    pdb_id_chain : string
+        A string denoting a 4 character PDB ID plus a one character chain
+        offset with a dot: XXXX.X, as in 2F5N.A
 
-#     Returns
-#     -------
+    Returns
+    -------
 
-#     out : dict
-#         A dictionary containing the sequence cluster associated with the PDB
-#         entry and chain
+    out : dict
+        A dictionary containing the sequence cluster associated with the PDB
+        entry and chain
 
-#     Examples
-#     --------
+    Examples
+    --------
 
-#     >>> sclust = get_seq_cluster('2F5N.A')
-#     >>> print(sclust['pdbChain'][:10])
-#     [{'@name': '4PD2.A', '@rank': '1'},
-#      {'@name': '3U6P.A', '@rank': '2'},
-#      {'@name': '4PCZ.A', '@rank': '3'},
-#      {'@name': '3GPU.A', '@rank': '4'},
-#      {'@name': '3JR5.A', '@rank': '5'},
-#      {'@name': '3SAU.A', '@rank': '6'},
-#      {'@name': '3GQ4.A', '@rank': '7'},
-#      {'@name': '1R2Z.A', '@rank': '8'},
-#      {'@name': '3U6E.A', '@rank': '9'},
-#      {'@name': '2XZF.A', '@rank': '10'}]
+    >>> sclust = get_seq_cluster('2F5N.A')
+    >>> print(sclust['pdbChain'][:10])
+    [{'@name': '4PD2.A', '@rank': '1'},
+     {'@name': '3U6P.A', '@rank': '2'},
+     {'@name': '4PCZ.A', '@rank': '3'},
+     {'@name': '3GPU.A', '@rank': '4'},
+     {'@name': '3JR5.A', '@rank': '5'},
+     {'@name': '3SAU.A', '@rank': '6'},
+     {'@name': '3GQ4.A', '@rank': '7'},
+     {'@name': '1R2Z.A', '@rank': '8'},
+     {'@name': '3U6E.A', '@rank': '9'},
+     {'@name': '2XZF.A', '@rank': '10'}]
 
-#     """
+    """
 
-#     url_root = 'http://www.rcsb.org/pdb/rest/sequenceCluster?structureId='
-#     out = get_info(pdb_id_chain, url_root = url_root)
-#     out = to_dict(out)
-#     return remove_at_sign(out['sequenceCluster'])
+    url_root = 'http://www.rcsb.org/pdb/rest/sequenceCluster?structureId='
+    out = get_info(pdb_id_chain, url_root = url_root)
+    out = to_dict(out)
+    return remove_at_sign(out['sequenceCluster'])
 
 
 def get_blast(pdb_id, chain_id='A', identity_cutoff=0.99):
